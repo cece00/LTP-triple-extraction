@@ -13,9 +13,7 @@ Information Extraction of SKE dataset (http://lic2019.ccf.org.cn/)
 |---|------|-----|-----|----------------|
 | 1 |地点 |海拔 | Number |{"object_type": "Number", "predicate": "海拔", "object": "2,240米", "subject_type": "地点", "subject": "卡萨布兰卡火山"}|
 | 2 |电视综艺 |嘉宾 | 人物 |{"object_type": "人物", "predicate": "嘉宾", "object": "黄小琥", "subject_type": "电视综艺", "subject": "全能星战"}|
-  
-  
- 
+   
 对于三元组抽取任务，我们认为可能分为主体客体抽取、关系抽取两个部分。后者会利用前者的信息完善结果，所以我们需要先实现主体客体模型，再实现关系模型。这样拆解保证了问题的可行性，也保证了团队合作的高效和均衡。
 
 ### 3.our model
@@ -36,8 +34,38 @@ Information Extraction of SKE dataset (http://lic2019.ccf.org.cn/)
 --Python 3 + Keras(基于tensorflow)  
 --LTP3.4.0
 
-**code**
+**code**  
+written by 	qsy  
+1.pre_process.py（无输出）  
+	注意设置TR_SIZE的大小，该变量为训练集的大小（即训练集的句子数）  
+2.the_model.py  
+	会调用deal_data.py，get_label.py，pre_model.py三个文件，其中若有TR_SIZE，请注意设置  
+3.final_process.py  
+	修改pre_process.py训练集路径为测试集路径，生成测试文件  
+4.semlabel_semtree.py  
+	生成三元组并和句子一起保存为测试文件final_data.txt，每一行为以空格隔开的词的句子加上三元组，并注意保存每个句子三元组的数量  
+5.predict.py  
+	使用final_data.txt预测类别，转换为五元组，写入final_label.py文件  
+6.tojson.py  
+	使用final_label.py写入json文件：  
+	需要 1）原始句子 2）五元组list  
+	格式：  
+{  
+    "text": "input sentence", // must be exactly the same as the given original sentence  
+         "spo_list":[{    //all spo triples extracted from text  
+                "object_type":"XX",    // object type  
+                "predicate":"XX",      // predicate mentioned in text  
+                "object":"o_value",   // object value  
+                "subject_type":"XX",   // subject type  
+                "subject":"s_value".   // subject value  
+               },   
+    ……  
+             ]  
+    }  
+    
 
 
 
-
+**参考paper：**  
+http://www.doc88.com/p-1436368975920.html  
+https://www.cnblogs.com/herosoft/p/8134213.html
