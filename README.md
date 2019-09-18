@@ -1,4 +1,4 @@
-# use-LTP
+# IR use LTP
 Information Extraction of SKE dataset (http://lic2019.ccf.org.cn/)
 
 ### 1. 竞赛任务
@@ -36,18 +36,18 @@ Information Extraction of SKE dataset (http://lic2019.ccf.org.cn/)
 
 **code**  
 written by 	qsy  
-1.pre_process.py（无输出）  
-	注意设置TR_SIZE的大小，该变量为训练集的大小（即训练集的句子数）  
-2.the_model.py  
-	会调用deal_data.py，get_label.py，pre_model.py三个文件，其中若有TR_SIZE，请注意设置  
-3.final_process.py  
-	修改pre_process.py训练集路径为测试集路径，生成测试文件  
-4.semlabel_semtree.py  
-	生成三元组并和句子一起保存为测试文件final_data.txt，每一行为以空格隔开的词的句子加上三元组，并注意保存每个句子三元组的数量  
-5.predict.py  
-	使用final_data.txt预测类别，转换为五元组，写入final_label.py文件  
-6.tojson.py  
-	使用final_label.py写入json文件：  
+-1.pre_process.py（无输出）  
+	-注意设置TR_SIZE的大小，该变量为训练集的大小（即训练集的句子数）  
+-2.the_model.py  
+	-会调用deal_data.py，get_label.py，pre_model.py三个文件，其中若有TR_SIZE，请注意设置  
+-3.final_process.py  
+	-修改pre_process.py训练集路径为测试集路径，生成测试文件  
+-4.semlabel_semtree.py  
+	-生成三元组并和句子一起保存为测试文件final_data.txt，每一行为以空格隔开的词的句子加上三元组，并注意保存每个句子三元组的数量  
+-5.predict.py  
+	-使用final_data.txt预测类别，转换为五元组，写入final_label.py文件  
+-6.tojson.py  
+	-使用final_label.py写入json文件：  
 	需要 1）原始句子 2）五元组list  
 	格式：  
 {  
