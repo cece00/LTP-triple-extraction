@@ -26,14 +26,14 @@ Information Extraction of SKE dataset (http://lic2019.ccf.org.cn/)
 (3)	系统架构 = 关系模型 + 三元组模型。
 
 ##### 2)关系模型介绍
-**处理数据**
+**处理数据**  
 我们首先从训练样本train_data.json中抽取出10000条样本作为训练语料，并依据正则表达式划分text（文本）、predicate（关系）、object_type（客体类型）、object（客体）、subject（主体）、subject_type（主体类型）。之后我们给50个关系赋值0-49，并为每条样本打上标签。
 
-**搭建模型**
+**搭建模型**  
 经过调研，我们发现CNN和Bi-LSTM在处理文本时，具有相对较好的性能。CNN构造神经网络，通过误差回馈修正权重；Bi-LSTM双向考虑上下文，充分利用已知信息。这两这都适用于我们这个任务，所以我们采用了Keras框架+CNN和Keras+Bi-LSTM进行模型的搭建。
 
-**环境**
---Python 3 + Keras(基于tensorflow)
+**环境**  
+--Python 3 + Keras(基于tensorflow)  
 --LTP3.4.0
 
 **code**
